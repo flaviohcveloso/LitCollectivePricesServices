@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lit Collective — Services & Pricing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#1E3AFB;
+    --blue-dark:#12237E;
+    --blue-tint:#DCE6FF;
+    --blue-tint-2:#B9CDFF;
+    --ink:#0A0A0A;
+    --paper:#FFFFFF;
+    --muted-bg:#F5F5F5;
+    --gray:#727B90;
+    --gray-2:#8A8A8A;
+    --line:#E7E7E7;
+    --radius-lg: 28px;
+    --radius-md: 18px;
+    --radius-sm: 10px;
+    --display: 'Darker Grotesque', sans-serif;
+    --body: 'Manrope', sans-serif;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    font-family:var(--body);
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+  img,svg{display:block;}
+  button{font:inherit; cursor:pointer;}
+
+  .wrap{
+    max-width:1240px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  h1,h2,h3,h4{
+    font-family:var(--display);
+    font-weight:700;
+    line-height:0.95;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--display);
+    font-style:italic;
+    font-weight:600;
+    font-size:22px;
+    color:var(--blue);
+    margin-bottom:14px;
+  }
+  .eyebrow .bolt{width:16px; height:16px; flex:none;}
+  .eyebrow .bolt path{fill:var(--blue);}
+
+  .bolt-mark{ flex:none; }
+
+  /* ===== focus ===== */
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--blue);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+
+  /* ===== NAV ===== */
+  header.nav{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:rgba(255,255,255,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:76px;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--display);
+    font-size:26px;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .logo strong{font-weight:800;}
+  .logo .bolt-mark{
+    width:30px; height:30px;
+    background:var(--blue);
+    border-radius:999px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .logo .bolt-mark svg{width:15px; height:15px;}
+  .logo .bolt-mark path{fill:#fff;}
+
+  nav.links{
+    display:flex;
+    align-items:center;
+    gap:36px;
+    font-size:16px;
+    font-weight:600;
+  }
+  nav.links a{
+    text-decoration:none;
+    color:var(--ink);
+    position:relative;
+    padding:4px 0;
+  }
+  nav.links a::after{
+    content:'';
+    position:absolute;
+    left:0; right:100%;
+    bottom:0;
+    height:2px;
+    background:var(--blue);
+    transition:right .25s ease;
+  }
+  nav.links a:hover::after{right:0;}
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--body);
+    font-weight:700;
+    font-size:15px;
+    padding:12px 22px;
+    border-radius:999px;
+    border:1.5px solid var(--ink);
+    background:transparent;
+    color:var(--ink);
+    text-decoration:none;
+    transition:transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{
+    background:var(--ink);
+    color:#fff;
+    border-color:var(--ink);
+  }
+  .btn-primary:hover{background:var(--blue); border-color:var(--blue);}
+  .btn-ghost-blue{
+    border-color:var(--blue);
+    color:var(--blue);
+  }
+  .btn-ghost-blue:hover{background:var(--blue); color:#fff;}
+  .btn-sm{padding:9px 16px; font-size:14px;}
+
+  .nav-cta{display:flex;}
+
+  .menu-toggle{
+    display:none;
+    background:none;
+    border:none;
+    width:40px; height:40px;
+    align-items:center;
+    justify-content:center;
+  }
+  .menu-toggle svg{width:24px; height:24px;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    background:var(--blue);
+    color:#fff;
+    overflow:hidden;
+    padding:96px 0 120px;
+  }
+  .hero .wrap{position:relative; z-index:2;}
+  .hero-blob-1{
+    position:absolute;
+    right:-160px; top:-140px;
+    width:620px; height:620px;
+    border-radius:50%;
+    background:var(--blue-tint-2);
+    opacity:.9;
+  }
+  .hero-blob-2{
+    position:absolute;
+    right:-40px; top:60px;
+    width:420px; height:420px;
+    border-radius:50%;
+    background:#fff;
+  }
+  .hero-blob-2 .bolt{
+    position:absolute;
+    inset:0;
+    margin:auto;
+    width:180px; height:180px;
+  }
+  .hero-blob-2 .bolt path{fill:var(--blue);}
+  .hero-ring{
+    position:absolute;
+    left:56%; top:-120px;
+    width:900px; height:900px;
+    border:1px solid rgba(255,255,255,0.35);
+    border-radius:50%;
+  }
+
+  .hero-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,0.14);
+    border:1px solid rgba(255,255,255,0.4);
+    color:#fff;
+    font-family:var(--body);
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:8px 16px;
+    border-radius:999px;
+    margin-bottom:28px;
+  }
+  .hero-tag .dot{width:7px; height:7px; border-radius:50%; background:#7CFFB2;}
+
+  .hero h1{
+    font-size:clamp(48px, 7vw, 92px);
+    max-width:820px;
+    color:#fff;
+  }
+  .hero h1 em{
+    font-style:normal;
+    font-weight:900;
+    display:block;
+  }
+  .hero p.lead{
+    font-family:var(--body);
+    font-size:19px;
+    max-width:480px;
+    margin-top:26px;
+    color:rgba(255,255,255,0.86);
+    font-weight:500;
+  }
+  .hero-actions{
+    display:flex;
+    gap:16px;
+    margin-top:40px;
+    flex-wrap:wrap;
+  }
+  .hero .btn-primary{background:#fff; color:var(--ink); border-color:#fff;}
+  .hero .btn-primary:hover{background:var(--ink); color:#fff; border-color:var(--ink);}
+  .hero .btn-ghost{border-color:rgba(255,255,255,0.6); color:#fff;}
+  .hero .btn-ghost:hover{background:#fff; color:var(--ink); border-color:#fff;}
+
+  .hero-stats{
+    display:flex;
+    gap:48px;
+    margin-top:72px;
+    flex-wrap:wrap;
+  }
+  .hero-stats div{border-left:2px solid rgba(255,255,255,0.4); padding-left:16px;}
+  .hero-stats .num{font-family:var(--display); font-size:40px; font-weight:800; line-height:1;}
+  .hero-stats .label{font-size:13px; color:rgba(255,255,255,0.75); margin-top:4px;}
+
+  /* ===== SECTION HEADS ===== */
+  section{padding:110px 0;}
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:40px;
+    margin-bottom:56px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{font-size:clamp(34px,4.2vw,52px);}
+  .section-head p{
+    max-width:380px;
+    color:var(--gray);
+    font-size:16px;
+    font-weight:500;
+  }
+
+  /* ===== SERVICE CATEGORY BLOCK ===== */
+  .category{
+    padding-top:64px;
+    border-top:1px solid var(--line);
+  }
+  .category:first-of-type{border-top:none; padding-top:0;}
+
+  .category-head{
+    display:flex;
+    gap:32px;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:36px;
+    flex-wrap:wrap;
+  }
+  .category-head h3{
+    font-size:clamp(28px,3.4vw,38px);
+  }
+  .category-head .cat-desc{
+    max-width:420px;
+    color:var(--gray);
+    font-size:15px;
+    font-weight:500;
+    padding-top:6px;
+  }
+
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+  }
+  .card{
+    background:var(--muted-bg);
+    border-radius:var(--radius-md);
+    padding:30px 26px 26px;
+    display:flex;
+    flex-direction:column;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 20px 40px -20px rgba(10,10,10,0.25);
+    background:#fff;
+    outline:1px solid var(--line);
+  }
+  .card .tag{
+    font-family:var(--body);
+    font-weight:700;
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--blue);
+    margin-bottom:14px;
+  }
+  .card h4{
+    font-size:26px;
+    font-weight:700;
+    margin-bottom:10px;
+    min-height:32px;
+  }
+  .card p.desc{
+    font-size:14.5px;
+    color:var(--gray);
+    font-weight:500;
+    flex:1;
+    margin-bottom:22px;
+  }
+  .card .meta{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    border-top:1px solid rgba(10,10,10,0.08);
+    padding-top:16px;
+    margin-bottom:18px;
+  }
+  .card .price{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:20px;
+    line-height:1.1;
+  }
+  .card .price small{
+    display:block;
+    font-family:var(--body);
+    font-weight:600;
+    font-size:11px;
+    color:var(--gray-2);
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    margin-bottom:3px;
+  }
+  .card .prazo{
+    text-align:right;
+    font-size:13px;
+    color:var(--gray);
+    font-weight:600;
+  }
+  .card .prazo strong{display:block; color:var(--ink); font-size:15px;}
+  .card .more{
+    align-self:flex-start;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-weight:700;
+    font-size:14.5px;
+    color:var(--ink);
+    background:none;
+    border:none;
+    padding:0;
+  }
+  .card .more svg{width:14px; height:14px; transition:transform .18s ease;}
+  .card .more:hover{color:var(--blue);}
+  .card .more:hover svg{transform:translateX(3px);}
+
+  /* ===== CAROUSEL ===== */
+  .carousel-wrap{margin-top:40px;}
+  .carousel-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+  }
+  .carousel-head h5{
+    font-family:var(--body);
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--gray);
+  }
+  .carousel-nav{display:flex; gap:8px;}
+  .carousel-nav button{
+    width:38px; height:38px;
+    border-radius:50%;
+    border:1.5px solid var(--line);
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:border-color .18s ease, background .18s ease;
+  }
+  .carousel-nav button svg{width:16px; height:16px;}
+  .carousel-nav button svg path{stroke:var(--ink);}
+  .carousel-nav button:hover{border-color:var(--blue); background:var(--blue-tint);}
+
+  .carousel{
+    display:flex;
+    gap:18px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    padding-bottom:8px;
+    scrollbar-width:none;
+  }
+  .carousel::-webkit-scrollbar{display:none;}
+
+  .case-card{
+    flex:0 0 320px;
+    scroll-snap-align:start;
+    border-radius:var(--radius-md);
+    border:1px solid var(--line);
+    overflow:hidden;
+    background:#fff;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .case-card:hover{transform:translateY(-4px); box-shadow:0 20px 34px -22px rgba(10,10,10,0.3);}
+  .case-card .thumb{
+    height:170px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .case-card .thumb svg{width:46px; height:46px; opacity:.9; position:relative; z-index:1;}
+  .case-card .thumb::before{
+    content:'';
+    position:absolute;
+    width:220px; height:220px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.16);
+    right:-60px; top:-70px;
+  }
+  .case-card .body{padding:18px 20px 22px;}
+  .case-card .cat{
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--blue);
+    margin-bottom:8px;
+  }
+  .case-card h6{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:21px;
+    line-height:1.05;
+    margin-bottom:10px;
+  }
+  .case-card p{
+    font-size:13.5px;
+    color:var(--gray);
+    font-weight:500;
+    margin-bottom:14px;
+  }
+  .case-card .case-link{
+    font-size:13.5px;
+    font-weight:700;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .case-card .case-link svg{width:12px; height:12px;}
+
+  /* ===== METHODOLOGY ===== */
+  .method{
+    background:var(--ink);
+    color:#fff;
+    border-radius:40px;
+    margin:0 auto;
+    max-width:1240px;
+    padding:80px 64px;
+  }
+  .method-inner{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:60px;
+  }
+  .method h2{color:#fff; font-size:clamp(32px,4vw,48px); margin-bottom:18px;}
+  .method p.sub{color:rgba(255,255,255,0.65); font-size:16px; font-weight:500; max-width:360px;}
+  .method-list{list-style:none; border-top:1px solid rgba(255,255,255,0.15);}
+  .method-list li{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:22px 0;
+    border-bottom:1px solid rgba(255,255,255,0.15);
+    font-size:19px;
+    font-weight:600;
+  }
+  .method-list li .num{
+    font-family:var(--display);
+    color:var(--blue-tint-2);
+    font-size:15px;
+    font-weight:700;
+    width:26px;
+  }
+
+  /* ===== CTA BAND ===== */
+  .cta-band{
+    background:var(--blue-tint);
+    border-radius:40px;
+    max-width:1240px;
+    margin:0 auto;
+    padding:80px 64px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-band h2{font-size:clamp(32px,5vw,56px); max-width:700px; margin:0 auto 22px;}
+  .cta-band p{color:var(--gray); font-size:17px; font-weight:500; max-width:460px; margin:0 auto 34px;}
+  .cta-band .btn{margin:0 auto;}
+  .cta-band .actions{display:flex; justify-content:center; gap:16px; flex-wrap:wrap;}
+
+  /* ===== FOOTER ===== */
+  footer{padding:70px 0 40px;}
+  .footer-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:40px;
+    flex-wrap:wrap;
+    padding-bottom:48px;
+    border-bottom:1px solid var(--line);
+  }
+  .footer-cols{display:flex; gap:64px; flex-wrap:wrap;}
+  .footer-col h6{
+    font-size:12px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--gray-2);
+    margin-bottom:16px;
+  }
+  .footer-col a{
+    display:block;
+    text-decoration:none;
+    color:var(--ink);
+    font-weight:600;
+    font-size:15px;
+    margin-bottom:10px;
+  }
+  .footer-col a:hover{color:var(--blue);}
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-top:28px;
+    font-size:13px;
+    color:var(--gray);
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  /* ===== MODAL ===== */
+  .modal-overlay{
+    position:fixed; inset:0;
+    background:rgba(10,10,10,0.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    z-index:100;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal{
+    background:#fff;
+    max-width:560px;
+    width:100%;
+    border-radius:28px;
+    padding:44px 40px;
+    max-height:88vh;
+    overflow-y:auto;
+    position:relative;
+  }
+  .modal-close{
+    position:absolute;
+    top:24px; right:24px;
+    width:36px; height:36px;
+    border-radius:50%;
+    border:1.5px solid var(--line);
+    background:#fff;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .modal-close svg{width:14px; height:14px;}
+  .modal .tag{
+    font-size:11px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--blue); margin-bottom:12px;
+  }
+  .modal h3{font-size:34px; margin-bottom:16px; padding-right:30px;}
+  .modal p.full{font-size:15.5px; color:var(--gray); font-weight:500; margin-bottom:26px;}
+  .modal .facts{
+    display:flex; gap:24px; margin-bottom:26px; padding:20px; background:var(--muted-bg); border-radius:16px;
+  }
+  .modal .facts div small{display:block; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--gray-2); margin-bottom:4px;}
+  .modal .facts div strong{font-family:var(--display); font-size:21px; font-weight:700;}
+  .modal .includes{list-style:none; margin-bottom:30px;}
+  .modal .includes li{
+    display:flex; gap:10px; align-items:flex-start; font-size:14.5px; font-weight:500; color:var(--ink); margin-bottom:10px;
+  }
+  .modal .includes li svg{width:16px; height:16px; flex:none; margin-top:2px;}
+  .modal .includes li svg path{stroke:var(--blue);}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 980px){
+    .cards{grid-template-columns:repeat(2,1fr);}
+    .method-inner{grid-template-columns:1fr;}
+  }
+  @media (max-width: 760px){
+    .wrap{padding:0 20px;}
+    nav.links{
+      position:fixed;
+      top:76px; left:0; right:0;
+      background:#fff;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:0;
+      padding:8px 20px 20px;
+      border-bottom:1px solid var(--line);
+      transform:translateY(-130%);
+      transition:transform .25s ease;
+    }
+    nav.links.open{transform:translateY(0);}
+    nav.links a{width:100%; padding:14px 0; border-bottom:1px solid var(--line);}
+    .nav-cta{display:none;}
+    .menu-toggle{display:flex;}
+    .cards{grid-template-columns:1fr;}
+    .hero{padding:64px 0 80px;}
+    .hero-ring{display:none;}
+    .hero-blob-1{width:380px; height:380px; right:-160px;}
+    .hero-blob-2{width:260px; height:260px; right:-80px; top:20px;}
+    section{padding:70px 0;}
+    .method, .cta-band{border-radius:26px; padding:48px 26px;}
+    .footer-cols{gap:32px;}
+    .category-head{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo">
+      <span class="bolt-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg>
+      </span>
+      lit<strong>collective</strong>
+    </a>
+    <nav class="links" id="navLinks">
+      <a href="#servicos">Services</a>
+      <a href="#metodologia">Methodology</a>
+      <a href="#cases">Case Studies</a>
+      <a href="#contato">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contato" class="btn btn-primary btn-sm">Let's talk</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-ring"></div>
+  <div class="hero-blob-1"></div>
+  <div class="hero-blob-2">
+    <svg class="bolt" viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg>
+  </div>
+  <div class="wrap">
+    <span class="hero-tag"><span class="dot"></span> Updated pricing · 2024</span>
+    <h1>Services and pricing<em>from Lit Collective.</em></h1>
+    <p class="lead">Branding, digital presence and product design — every project ships with clear scope, timeline and investment from the first conversation.</p>
+    <div class="hero-actions">
+      <a href="#servicos" class="btn btn-primary">View all services</a>
+      <a href="#contato" class="btn btn-ghost">Request a quote</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="num">9</div><div class="label">Services available</div></div>
+      <div><div class="num">7–20</div><div class="label">Minimum turnaround days</div></div>
+      <div><div class="num">100%</div><div class="label">Async support included</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVIÇOS ============ -->
+<section id="servicos">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow"><svg class="bolt" viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg> what we do</span>
+        <h2>Choose the right service<br>for where you're at.</h2>
+      </div>
+      <p>Every package includes an insights report, async support and weekly check-in calls.</p>
+    </div>
+
+    <!-- BRANDING -->
+    <div class="category">
+      <div class="category-head">
+        <div>
+          <span class="eyebrow" style="font-size:16px; margin-bottom:6px;">Category 01</span>
+          <h3>Branding</h3>
+        </div>
+        <p class="cat-desc">Three depths of work to build or evolve your brand identity, from the essentials to full strategy.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <span class="tag">Silver Package</span>
+          <h4>Branding Silver</h4>
+          <p class="desc">Essential visual identity — logo, color palette and typography — for brands just getting started.</p>
+          <div class="meta">
+            <div class="price"><small>Investment</small>$2,200</div>
+            <div class="prazo">Min. timeline<strong>15 days</strong></div>
+          </div>
+          <button class="more" data-service="silver">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </article>
+
+        <article class="card">
+          <span class="tag">Gold Package</span>
+          <h4>Branding Gold</h4>
+          <p class="desc">A complete brand system with guidelines and a social kit — for brands ready to scale their presence.</p>
+          <div class="meta">
+            <div class="price"><small>Investment</small>$1,500 – $3,000</div>
+            <div class="prazo">Min. timeline<strong>20 days</strong></div>
+          </div>
+          <button class="more" data-service="gold">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </article>
+
+        <article class="card">
+          <span class="tag">Elite Package</span>
+          <h4>Branding Elite</h4>
+          <p class="desc">End-to-end strategic branding: research, positioning, naming and identity for brands that want to lead.</p>
+          <div class="meta">
+            <div class="price"><small>Investment</small>$4,500</div>
+            <div class="prazo">Min. timeline<strong>20 days</strong></div>
+          </div>
+          <button class="more" data-service="elite">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </article>
+      </div>
+
+      <div class="carousel-wrap">
+        <div class="carousel-head">
+          <h5>Related Branding case studies</h5>
+          <div class="carousel-nav">
+            <button data-target="carousel-branding" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <button data-target="carousel-branding" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+        <div class="carousel" id="carousel-branding">
+          <article class="case-card">
+            <div class="thumb" style="background:var(--blue);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></div>
+            <div class="body">
+              <div class="cat">Branding Elite</div>
+              <h6>Rebrand for a vegan skincare label</h6>
+              <p>Full repositioning, new naming and identity ahead of a brick-and-mortar retail launch.</p>
+              <a href="#" class="case-link">View case <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+          <article class="case-card">
+            <div class="thumb" style="background:#12237E;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="4"/></svg></div>
+            <div class="body">
+              <div class="cat">Branding Gold</div>
+              <h6>Visual identity for a B2B fintech</h6>
+              <p>Brand system and guidelines for a credit platform built for small businesses.</p>
+              <a href="#" class="case-link">View case <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+          <article class="case-card">
+            <div class="thumb" style="background:#3D57FF;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M12 3v18M3 12h18"/></svg></div>
+            <div class="body">
+              <div class="cat">Branding Silver</div>
+              <h6>Naming and logo for a yoga studio</h6>
+              <p>Lean identity delivered in three weeks for an independent studio launch.</p>
+              <a href="#" class="case-link">View case <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIGITAL -->
+    <div class="category">
+      <div class="category-head">
+        <div>
+          <span class="eyebrow" style="font-size:16px; margin-bottom:6px;">Category 02</span>
+          <h3>Digital presence</h3>
+        </div>
+        <p class="cat-desc">Content, pages and sites designed to speak to your audience and turn visitors into customers.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <span class="tag">Social Media</span>
+          <h4>Social Media Packages</h4>
+          <p class="desc">Strategic content and design for social channels, built for visual consistency and real engagement.</p>
+          <div class="meta">
+            <div class="price"><small>Investment</small>Starting at $2,000</div>
+            <div class="prazo">Min. timeline<strong>7 days</strong></div>
+          </div>
+          <button class="more" data-service="social">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </article>
+
+        <article class="card">
+          <span class="tag">Conversion</span>
+          <h4>Landing Page</h4>
+          <p class="desc">UI/UX design only for a conversion-focused page — copy direction and layout, delivered ready to hand off for development.</p>
+          <div class="meta">
+            <div class="price"><small>Investment</small>Starting at $2,000</div>
+            <div class="prazo">Min. timeline<strong>7 days</strong></div>
+          </div>
+          <button class="more" data-service="landing">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </article>
+
+        <article class="card">
+          <span class="tag">Webflow</span>
+          <h4>UI/UX + Webflow</h4>
+          <p class="desc">Full UI/UX design and Webflow build, pairing polished design with real performance and easy upkeep.</p>
+          <div class="meta">
+            <div class="price"><small>Investment</small>Starting at $5,000</div>
+            <div class="prazo">Min. timeline<strong>7 days</strong></div>
+          </div>
+          <button class="more" data-service="webflow">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </article>
+      </div>
+
+      <div class="carousel-wrap">
+        <div class="carousel-head">
+          <h5>Related Digital Presence case studies</h5>
+          <div class="carousel-nav">
+            <button data-target="carousel-digital" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <button data-target="carousel-digital" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+        <div class="carousel" id="carousel-digital">
+          <article class="case-card">
+            <div class="thumb" style="background:var(--blue);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div>
+            <div class="body">
+              <div class="cat">Landing Page</div>
+              <h6>Page that doubled a SaaS's conversion rate</h6>
+              <p>Copy and layout redesign lifted sign-up rate in a 30-day A/B test.</p>
+              <a href="#" class="case-link">View case <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+          <article class="case-card">
+            <div class="thumb" style="background:#12237E;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg></div>
+            <div class="body">
+              <div class="cat">UI/UX + Webflow</div>
+              <h6>Webflow site for an architecture studio</h6>
+              <p>Institutional portfolio with a CMS to publish new projects without a developer.</p>
+              <a href="#" class="case-link">View case <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+          <article class="case-card">
+            <div class="thumb" style="background:#3D57FF;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></svg></div>
+            <div class="body">
+              <div class="cat">Social Media</div>
+              <h6>Monthly content calendar for a coffee brand</h6>
+              <p>Recurring editorial line and designs that tripled organic reach in 60 days.</p>
+              <a href="#" class="case-link">View case <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESIGN & PRODUTO -->
+    <div class="category">
+      <div class="category-head">
+        <div>
+          <span class="eyebrow" style="font-size:16px; margin-bottom:6px;">Category 03</span>
+          <h3>Design & product</h3>
+        </div>
+        <p class="cat-desc">Original illustration, interfaces and motion that bring your brand's digital experiences to life.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <span class="tag">Illustration</span>
+          <h4>Illustration</h4>
+          <p class="desc">Original, authored illustrations that give personality to campaigns, products and brand materials.</p>
+          <div class="meta">
+            <div class="price"><small>Investment</small>Starting at $1,500</div>
+            <div class="prazo">Min. timeline<strong>15 days</strong></div>
+          </div>
+          <button class="more" data-service="illustration">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </article>
+
+        <article class="card">
+          <span class="tag">UX/UI</span>
+          <h4>UX/UI for Digital Products</h4>
+          <p class="desc">Intuitive, tested interfaces for apps and platforms, from wireframe to clickable prototype.</p>
+          <div class="meta">
+            <div class="price"><small>Investment</small>Starting at $1,500</div>
+            <div class="prazo">Min. timeline<strong>15 days</strong></div>
+          </div>
+          <button class="more" data-service="uxui">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </article>
+
+        <article class="card">
+          <span class="tag">Motion</span>
+          <h4>Motion Design</h4>
+          <p class="desc">Animation and video that bring the brand to life, from social media to opening titles for decks.</p>
+          <div class="meta">
+            <div class="price"><small>Investment</small>Starting at $1,500</div>
+            <div class="prazo">Min. timeline<strong>15 days</strong></div>
+          </div>
+          <button class="more" data-service="motion">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </article>
+      </div>
+
+      <div class="carousel-wrap">
+        <div class="carousel-head">
+          <h5>Related Design & Product case studies</h5>
+          <div class="carousel-nav">
+            <button data-target="carousel-design" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <button data-target="carousel-design" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+        <div class="carousel" id="carousel-design">
+          <article class="case-card">
+            <div class="thumb" style="background:var(--blue);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></div>
+            <div class="body">
+              <div class="cat">Illustration</div>
+              <h6>Illustration set for a meditation app</h6>
+              <p>Original visual library used across onboarding, notifications and the app store.</p>
+              <a href="#" class="case-link">View case <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+          <article class="case-card">
+            <div class="thumb" style="background:#12237E;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></div>
+            <div class="body">
+              <div class="cat">UX/UI Design</div>
+              <h6>UX redesign for a delivery platform</h6>
+              <p>New checkout flow reduced cart abandonment in follow-up user research.</p>
+              <a href="#" class="case-link">View case <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+          <article class="case-card">
+            <div class="thumb" style="background:#3D57FF;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M5 12l4 4L19 6"/></svg></div>
+            <div class="body">
+              <div class="cat">Motion Design</div>
+              <h6>Launch motion for a beauty product line</h6>
+              <p>Short-form social videos for the launch of a new skincare line.</p>
+              <a href="#" class="case-link">View case <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ METODOLOGIA ============ -->
+<section id="metodologia">
+  <div class="wrap">
+    <div class="method">
+      <div class="method-inner">
+        <div>
+          <span class="eyebrow" style="color:var(--blue-tint-2);"><svg class="bolt" viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" fill="#B9CDFF"/></svg> how we work</span>
+          <h2>Methodology and added deliverables.</h2>
+          <p class="sub">Every service package comes with these five pillars of ongoing support — at no extra cost.</p>
+        </div>
+        <ul class="method-list">
+          <li><span class="num">01</span> Report with insights and recommendations</li>
+          <li><span class="num">02</span> Unlimited async support</li>
+          <li><span class="num">03</span> Coaching on service implementation</li>
+          <li><span class="num">04</span> Daily progress reports</li>
+          <li><span class="num">05</span> Weekly check-in calls</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section id="contato">
+  <div class="wrap">
+    <div class="cta-band">
+      <span class="eyebrow" style="justify-content:center;"><svg class="bolt" viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg> let's start</span>
+      <h2>Ready to create something new for your brand?</h2>
+      <p>Tell us what you need and the team will come back with the right scope and investment for your project.</p>
+      <div class="actions">
+        <a href="mailto:hello@litcollective.com" class="btn btn-primary">Request a quote</a>
+        <a href="#servicos" class="btn btn-ghost-blue">Review services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="cases">
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="#top" class="logo">
+        <span class="bolt-mark">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg>
+        </span>
+        lit<strong>collective</strong>
+      </a>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h6>Services</h6>
+          <a href="#servicos">Branding</a>
+          <a href="#servicos">Digital presence</a>
+          <a href="#servicos">Design & product</a>
+        </div>
+        <div class="footer-col">
+          <h6>Studio</h6>
+          <a href="#metodologia">Methodology</a>
+          <a href="#contato">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h6>Social</h6>
+          <a href="#">Instagram</a>
+          <a href="#">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Lit Collective. All rights reserved.</span>
+      <span>Made with ⚡ by Lit Collective</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MODAL ============ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" id="modalClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="tag" id="modalTag"></div>
+    <h3 id="modalTitle"></h3>
+    <p class="full" id="modalDesc"></p>
+    <div class="facts">
+      <div><small>Investment</small><strong id="modalPrice"></strong></div>
+      <div><small>Min. timeline</small><strong id="modalPrazo"></strong></div>
+    </div>
+    <ul class="includes" id="modalIncludes"></ul>
+    <a href="mailto:hello@litcollective.com" class="btn btn-primary" style="width:100%; justify-content:center;">Request a quote</a>
+  </div>
+</div>
+
+<script>
+  // mobile menu
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // carousels
+  document.querySelectorAll('.carousel-nav button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const el = document.getElementById(btn.dataset.target);
+      const dir = parseInt(btn.dataset.dir, 10);
+      el.scrollBy({ left: dir * 340, behavior: 'smooth' });
+    });
+  });
+
+  // service data + modal
+  const services = {
+    silver: {
+      tag: 'Branding · Silver Package',
+      title: 'Branding Silver',
+      desc: 'The ideal starting point for new brands: we build an essential, coherent visual identity, ready for you to launch with confidence.',
+      price: '$2,200',
+      prazo: '15 days',
+      includes: ['Primary logo and variations', 'Brand color palette', 'Typography system', 'Simplified usage guide']
+    },
+    gold: {
+      tag: 'Branding · Gold Package',
+      title: 'Branding Gold',
+      desc: 'For brands ready to scale: a complete identity system, with detailed guidelines and a kit ready for social media.',
+      price: '$1,500 – $3,000',
+      prazo: '20 days',
+      includes: ['Everything in Silver', 'Full brand guidelines', 'Social media kit', 'Stationery and collateral applications']
+    },
+    elite: {
+      tag: 'Branding · Elite Package',
+      title: 'Branding Elite',
+      desc: 'End-to-end strategic branding, with market research, positioning and naming — for brands that want to lead their category.',
+      price: '$4,500',
+      prazo: '20 days',
+      includes: ['Everything in Gold', 'Strategic research and positioning', 'Naming (where applicable)', 'Brand voice and verbal identity']
+    },
+    social: {
+      tag: 'Digital presence · Social Media',
+      title: 'Social Media Packages',
+      desc: 'Content planning and design production to keep your social channels consistent, on-brand and built for real engagement.',
+      price: 'Starting at $2,000',
+      prazo: '7 days',
+      includes: ['Monthly editorial calendar', 'Feed and story designs', 'Captions and tone-of-voice direction']
+    },
+    landing: {
+      tag: 'Digital presence · Landing Page',
+      title: 'Landing Page',
+      desc: 'UI/UX design only for a single conversion-focused page — layout and design direction, delivered ready to hand off for development. Development/build is not included.',
+      price: 'Starting at $2,000',
+      prazo: '7 days',
+      includes: ['UI/UX design (no build)', 'Conversion-focused layout', 'Design handoff files']
+    },
+    webflow: {
+      tag: 'Digital presence · UI/UX + Webflow',
+      title: 'UI/UX + Webflow',
+      desc: 'Full UI/UX design and Webflow build, pairing polished design with real performance and easy day-to-day maintenance.',
+      price: 'Starting at $5,000',
+      prazo: '7 days',
+      includes: ['UI/UX design and wireframes', 'Design and development in Webflow', 'Responsive structure', 'Quick training for future edits']
+    },
+    illustration: {
+      tag: 'Design & product · Illustration',
+      title: 'Illustration',
+      desc: 'Original, authored illustrations that give unique personality to campaigns, packaging, digital products and brand materials.',
+      price: 'Starting at $1,500',
+      prazo: '15 days',
+      includes: ['Exclusive illustration style for the brand', 'High-resolution assets', 'Editable source files']
+    },
+    uxui: {
+      tag: 'Design & product · UX/UI',
+      title: 'UX/UI for Digital Products',
+      desc: 'Intuitive interfaces validated with real users, from wireframe to clickable prototype — ready to hand off to development.',
+      price: 'Starting at $1,500',
+      prazo: '15 days',
+      includes: ['Wireframes and user flows', 'High-fidelity UI design', 'Clickable prototype']
+    },
+    motion: {
+      tag: 'Design & product · Motion',
+      title: 'Motion Design',
+      desc: 'Animation and short videos that bring the brand to life — from social media pieces to opening titles for decks.',
+      price: 'Starting at $1,500',
+      prazo: '15 days',
+      includes: ['Script and storyboard', '2D animation', 'Platform-optimized exports']
+    }
+  };
+
+  const overlay = document.getElementById('modalOverlay');
+  const modalTag = document.getElementById('modalTag');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalPrice = document.getElementById('modalPrice');
+  const modalPrazo = document.getElementById('modalPrazo');
+  const modalIncludes = document.getElementById('modalIncludes');
+
+  function openModal(key){
+    const s = services[key];
+    if(!s) return;
+    modalTag.textContent = s.tag;
+    modalTitle.textContent = s.title;
+    modalDesc.textContent = s.desc;
+    modalPrice.textContent = s.price;
+    modalPrazo.textContent = s.prazo;
+    modalIncludes.innerHTML = s.includes.map(item =>
+      `<li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>${item}</li>`
+    ).join('');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-service]').forEach(btn => {
+    btn.addEventListener('click', () => openModal(btn.dataset.service));
+  });
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+</script>
+
+</body>
+</html>
